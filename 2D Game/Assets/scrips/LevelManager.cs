@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour {
 	}
 	
 	public void RespawnPlayer(){
-		StartCoroutine ("RespawnpcCo");
+		StartCoroutine ("RespawnPlayerCo");
 	}
 
 	public IEnumerator RespawnPlayerCo(){
