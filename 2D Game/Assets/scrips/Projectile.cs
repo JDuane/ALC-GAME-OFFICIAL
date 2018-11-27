@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
@@ -18,9 +18,9 @@ public class Projectile : MonoBehaviour {
 	void Start () {
 		pc = GameObject.Find("pc");
 
-		EnemyDeath = Resources.Load("Prefabs/Death ps") as GameObject;
+		EnemyDeath = Resources.Load("Prefabs/DeathPS") as GameObject;
 
-		ProjectileParticle = Resources.Load("Prefabs/Respawn ps") as GameObject;
+		ProjectileParticle = Resources.Load("Prefabs/RespawnPS") as GameObject;
 
 		if(pc.transform.localScale.x < 0)
 			Speed = -Speed;
@@ -35,19 +35,20 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if(other.tag == "Enemy"){
-			Instantiate(EnemyDeath, other.transform.position, other.transform.rotation);
-			Destroy (other.gameObject);
-			ScoreManager.AddPoints (PointsForKill);
-		}
+			//Destroys enemy on contact with projectile. Adds points
+			if(other.tag == "Enemy"){
+				Instantiate(EnemyDeath, other.transform.position, other.transform.rotation);
+				Destroy (other.gameObject);
+				ScoreManager.AddPoints (PointsForKill);
+			}
 
-		// Instantiate(ProjectileParticle, transform.position, transform.rotation);
-		Destroy (gameObject);
+			// Instantiate(ProjectileParticle, transform.position, transform.rotation);
+			Destroy (gameObject);
 	}
 
-		void OnCollisionEnter2D(Collision2D other)
+			void OnCollisionEnter2D(Collision2D other)
 	{
-		Instantiate(ProjectileParticle, transform.position, transform.rotation);
-		Destroy (gameObject);
+			Instantiate(ProjectileParticle, transform.position, transform.rotation);
+			Destroy (gameObject);
 	}
 }
