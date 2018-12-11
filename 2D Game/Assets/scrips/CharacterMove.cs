@@ -18,9 +18,12 @@ public class CharacterMove : MonoBehaviour {
 	//Non-Slide player
 	private float moveVelocity;
 
+	public Animator animator;
+
 	// Use this for initialization
 	void Start () {
-		
+		animator.SetBool("IsWalking",false);
+		animator.SetBool("IsJumping",false);
 	}
 	
 
@@ -37,8 +40,10 @@ public class CharacterMove : MonoBehaviour {
 		}
 
 		//Double jump code
-		if(grounded)
+		if(grounded){
 			doubleJump = false;
+			animator.SetBool("IsJumping",false);
+		}
 		
 		if(Input.GetKeyDown (KeyCode.W)&& !doubleJump && !grounded){
 			Jump();
@@ -52,11 +57,22 @@ public class CharacterMove : MonoBehaviour {
 		if(Input.GetKey (KeyCode.D)){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			moveVelocity = moveSpeed;
+			animator.SetBool("IsWalking",true);
 		}
+
+		else if(Input.GetKeyUp (KeyCode.D)){
+			animator.SetBool("IsWalking",false);
+		}
+
 		if(Input.GetKey (KeyCode.A)){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			moveVelocity = -moveSpeed;
+			animator.SetBool("IsWalking",true);
 		}	
+
+		else if(Input.GetKeyUp (KeyCode.A)){
+			animator.SetBool("IsWalking",false);
+		}
 
 		GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, GetComponent<Rigidbody2D>().velocity.y);
 
@@ -70,5 +86,6 @@ public class CharacterMove : MonoBehaviour {
 	
 	public void Jump(){
 		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
+		animator.SetBool("IsJumping",true);
 	}
 }
