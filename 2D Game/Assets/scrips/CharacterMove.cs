@@ -24,6 +24,7 @@ public class CharacterMove : MonoBehaviour {
 	void Start () {
 		animator.SetBool("IsWalking",false);
 		animator.SetBool("IsJumping",false);
+		animator.SetBool("IsSlideing",false);
 	}
 	
 
@@ -64,6 +65,14 @@ public class CharacterMove : MonoBehaviour {
 			animator.SetBool("IsWalking",false);
 		}
 
+		if(Input.GetKey (KeyCode.LeftControl)){
+			animator.SetBool("IsSlideing",true);
+		}
+
+		else if(Input.GetKeyUp (KeyCode.LeftControl)){
+			animator.SetBool("IsSlideing",false);
+		}
+
 		if(Input.GetKey (KeyCode.A)){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			moveVelocity = -moveSpeed;
@@ -72,6 +81,14 @@ public class CharacterMove : MonoBehaviour {
 
 		else if(Input.GetKeyUp (KeyCode.A)){
 			animator.SetBool("IsWalking",false);
+		}
+
+		if(Input.GetKey (KeyCode.LeftControl)){
+			animator.SetBool("IsSlideing",true);
+		}
+
+		else if(Input.GetKeyUp (KeyCode.LeftControl)){
+			animator.SetBool("IsSlideing",false);
 		}
 
 		GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, GetComponent<Rigidbody2D>().velocity.y);
