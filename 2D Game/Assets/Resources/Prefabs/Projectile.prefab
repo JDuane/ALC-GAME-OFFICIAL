@@ -54,10 +54,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0.1
+  m_AngularDrag: 0.1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -92,8 +92,9 @@ MonoBehaviour:
   Speed: 20
   TimeOut: 10
   pc: {fileID: 1208623571428368, guid: 4136f8f24ef3844e7a9341f98ab6f92a, type: 2}
-  EnemyDeath: {fileID: 0}
-  ProjectileParticle: {fileID: 0}
+  EnemyDeath: {fileID: 1958113753480780, guid: 668ebfd3f2d8d46b5b758ee1d3e8ee8e, type: 2}
+  ProjectileParticle: {fileID: 1167524423820496, guid: 36826494e138f4ff6bede4b8682aa6a9,
+    type: 2}
   PointsForKill: 10
 --- !u!212 &212343536760573284
 SpriteRenderer:
